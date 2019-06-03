@@ -1,15 +1,17 @@
+// EXTERNAL IMPORTS
 import React, { Component } from 'react'
-import './App.scss'
 import { Route } from 'react-router-dom'
-
-import AuthenticatedRoute from './auth/components/AuthenticatedRoute'
-import Header from './header/Header'
-import SignUp from './auth/components/SignUp'
-import SignIn from './auth/components/SignIn'
-import SignOut from './auth/components/SignOut'
-import ChangePassword from './auth/components/ChangePassword'
-
 import Alert from 'react-bootstrap/Alert'
+
+// LOCAL IMPORTS
+import './App.scss'
+import AuthenticatedRoute from './auth/components/AuthenticatedRoute.js'
+import Header from './header/Header.js'
+import SignUp from './auth/components/SignUp.js'
+import SignIn from './auth/components/SignIn.js'
+import SignOut from './auth/components/SignOut.js'
+import ChangePassword from './auth/components/ChangePassword.js'
+import GetBooks from './events/components/GetBooks.js'
 
 class App extends Component {
   constructor () {
@@ -28,6 +30,10 @@ class App extends Component {
   alert = (message, type) => {
     this.setState({ alerts: [...this.state.alerts, { message, type }] })
   }
+
+  // getBooks = () => {
+  //   console.log('You clicked a button!')
+  // }
 
   render () {
     const { alerts, user } = this.state
@@ -54,6 +60,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/books' render={() => (
+            <GetBooks user={user}/>
           )} />
         </main>
       </React.Fragment>
