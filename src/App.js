@@ -12,6 +12,7 @@ import SignIn from './auth/components/SignIn.js'
 import SignOut from './auth/components/SignOut.js'
 import ChangePassword from './auth/components/ChangePassword.js'
 import GetBooks from './events/components/GetBooks.js'
+import Wishlist from './events/components/Wishlist.js'
 
 class App extends Component {
   constructor () {
@@ -63,6 +64,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} exact path='/books' render={() => (
             <GetBooks user={user}/>
+          )} />
+          <AuthenticatedRoute user={user} path='/wishlist' render={() => (
+            <Wishlist user={user}/>
           )} />
         </main>
       </React.Fragment>

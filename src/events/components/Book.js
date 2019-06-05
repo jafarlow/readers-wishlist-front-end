@@ -1,16 +1,29 @@
 
 import React, { Component } from 'react'
 // import { Link, Redirect } from 'react-router-dom'
-// import axios from 'axios'
+import axios from 'axios'
 
-// import apiUrl from '../../apiConfig'
+import apiUrl from '../../apiConfig'
 // import Layout from '../shared/Layout'
 
 class Book extends Component {
-  destroy = () => {
-    console.log('destroyed')
+  addToList = () => {
+    console.log(this)
+    axios({
+      url: `${apiUrl}/wishlists`,
+      method: 'POST',
+      headers: {
+        'Authorization': `Token token=${this.props.user.token}`
+      },
+      data: {
+        wishlist: {
+          book: this.props.book._id
+        }
+      }
+    })
+    console.log('I have been clicked to add to the list')
   }
-
+  // read/not read button on each book
   render () {
     const { book } = this.props
 
@@ -25,7 +38,7 @@ class Book extends Component {
         <p>Publication year: {book.publicationYear}</p>
         <p>Genre: {book.genre}</p>
         <p>Page count: {book.pageCount}</p>
-        <button onClick={this.destroy}>Delete Book</button>
+        <button onClick={this.addToList}>Add to list</button>
       </div>
     )
   }
