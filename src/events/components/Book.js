@@ -15,6 +15,18 @@ class Book extends Component {
       read: false
     }
   }
+  // componentDidMount () {
+  //   axios({
+  //     url: `${apiUrl}/wishlists/${this.props.wishlistId}`,
+  //     method: 'GET',
+  //     headers: {
+  //       'Authorization': `Token token=${this.props.user.token}`
+  //     }
+  //   })
+  //     // .then(res => console.log(res))
+  //     .then((res) => this.setState({ read: res.data.wishlist.read }))
+  //     .catch(console.error)
+  // }
   addToList = () => {
     axios({
       url: `${apiUrl}/wishlists`,
@@ -40,20 +52,41 @@ class Book extends Component {
       .then(() => this.setState({ deleted: true }))
       .catch(console.error)
   }
-  read = () => {
-    console.log('You have clicked the readButton!')
+  markAsRead = () => {
     axios({
-      url: `${apiUrl}/wishlists/${this.props.match.params.id}`,
+      url: `${apiUrl}/wishlists/${this.props.wishlistId}`,
       method: 'PATCH',
       headers: {
         'Authorization': `Token token=${this.props.user.token}`
+      },
+      data: {
+        wishlist: {
+          book: this.props.book._id
+        }
       }
     })
       .then(() => this.setState({ read: true }))
+      .catch(console.error)
+  }
+  markAsUnread = () => {
+    axios({
+      url: `${apiUrl}/wishlists/${this.props.wishlistId}`,
+      method: 'PATCH',
+      headers: {
+        'Authorization': `Token token=${this.props.user.token}`
+      },
+      data: {
+        wishlist: {
+          book: this.props.book._id
+        }
+      }
+    })
+      .then(() => this.setState({ read: false }))
+      .catch(console.error)
   }
   render () {
     const { book } = this.props
-    const { deleted } = this.state
+    const { deleted, read } = this.state
     const currentLocation = location.hash
     let addToListButton
     let deleteButton
@@ -71,7 +104,11 @@ class Book extends Component {
 
     if (currentLocation === '#/wishlists') {
       deleteButton = <button onClick={this.destroy}>Remove book</button>
-      readButton = <button onClick={this.read}>Read</button>
+      readButton = <div>{read ? (
+        <button onClick={this.markAsUnread}>Mark as Unread</button>
+      ) : (
+        <button onClick={this.markAsRead}>Mark as Read</button>
+      )}</div>
     }
     if (currentLocation === '#/books') {
       addToListButton = <button onClick={this.addToList}>Add to list</button>
