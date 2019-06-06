@@ -27,7 +27,6 @@ class GetBooks extends Component {
   }
   handleOnClick = () => {
     const newBooks = []
-
     this.setState({ books: newBooks })
     const randomInteger = (min, max) => {
       const array = []
@@ -44,21 +43,7 @@ class GetBooks extends Component {
     })
       .then(res => {
         const booksArray = res.data.books
-        // const filteredArray = this.state.wishlist.map(book => {
-        //   booksArray.filter(book => {
-        //     !booksArray.includes(book)
-        //   })
-        // })
-        // const filteredArray = booksArray.filter(book => !this.state.wishlist.includes(book))
-        // const filteredArray = this.state.wishlist.filter(book => !booksArray.includes(book))
-        const filteredArray = booksArray.filter(book => !this.state.wishlist.includes(book.book))
-        // const mappededArray = filteredArray.map(book => booksArray.filter(book => this.state.wishlist.includes(book._id)))
-        // const filteredArray = booksArray.map(book => this.state.wishlist.filter(book => booksArray.includes(book._id)))
-        // const filteredArray = booksArray.map(book => {
-        //   this.state.wishlist.filter(!this.state.wishlist.includes(book))
-        // })
-        console.log('#######', this.state.wishlist)
-        console.log('***********', filteredArray.length)
+        const filteredArray = booksArray.filter(book => !(this.state.wishlist.map(book => book.book).includes(book._id)))
         const randomIndex = randomInteger(0, filteredArray.length)
         randomIndex.forEach(
           (indexVal) => {
