@@ -1,7 +1,7 @@
 // EXTERNAL IMPORTS
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
-import Alert from 'react-bootstrap/Alert'
+// import Alert from 'react-bootstrap/Alert'
 
 // LOCAL IMPORTS
 import './App.scss'
@@ -13,6 +13,7 @@ import SignOut from './auth/components/SignOut.js'
 import ChangePassword from './auth/components/ChangePassword.js'
 import GetBooks from './events/components/GetBooks.js'
 import Wishlist from './events/components/Wishlist.js'
+import AutoDismissAlert from './events/components/AutoDismissAlert.js'
 
 class App extends Component {
   constructor () {
@@ -43,11 +44,10 @@ class App extends Component {
       <React.Fragment>
         <Header user={user} />
         {alerts.map((alert, index) => (
-          <Alert key={index} dismissible variant={alert.type}>
-            <Alert.Heading>
-              {alert.message}
-            </Alert.Heading>
-          </Alert>
+          <AutoDismissAlert
+            key={index}
+            alert={alert}
+          />
         ))}
         <main className="container">
           <Route path='/sign-up' render={() => (
@@ -66,9 +66,6 @@ class App extends Component {
             <GetBooks user={user}/>
           )} />
           <AuthenticatedRoute user={user} path='/wishlists' render={({ match }) => (
-            <Wishlist match={match} user={user}/>
-          )} />
-          <AuthenticatedRoute user={user} path='/wishlists/:id' render={({ match }) => (
             <Wishlist match={match} user={user}/>
           )} />
         </main>
