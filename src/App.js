@@ -65,7 +65,7 @@ class App extends Component {
           <AuthenticatedRoute user={user} exact path='/books' render={() => (
             <GetBooks user={user}/>
           )} />
-          <AuthenticatedRoute user={user} path='/wishlist' render={() => (
+          <AuthenticatedRoute user={user} path='/wishlists' render={() => (
             <Wishlist user={user}/>
           )} />
         </main>

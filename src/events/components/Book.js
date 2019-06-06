@@ -8,7 +8,6 @@ import apiUrl from '../../apiConfig'
 
 class Book extends Component {
   addToList = () => {
-    console.log(this)
     axios({
       url: `${apiUrl}/wishlists`,
       method: 'POST',
@@ -21,7 +20,6 @@ class Book extends Component {
         }
       }
     })
-    console.log('I have been clicked to add to the list')
   }
   // read/not read button on each book
   render () {

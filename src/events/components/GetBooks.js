@@ -9,8 +9,21 @@ class GetBooks extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      books: []
+      books: [],
+      wishlist: []
     }
+  }
+  componentDidMount () {
+    axios({
+      url: `${apiUrl}/wishlists`,
+      method: 'GET',
+      headers: {
+        'Authorization': `Token token=${this.props.user.token}`
+      }
+    })
+      .then(res => {
+        this.setState({ wishlist: res.data.wishlists })
+      })
   }
   handleOnClick = () => {
     const newBooks = []
@@ -31,8 +44,22 @@ class GetBooks extends Component {
     })
       .then(res => {
         const booksArray = res.data.books
-        const randomIndex = randomInteger(0, booksArray.length)
-        console.log('***', randomIndex)
+        // const filteredArray = this.state.wishlist.map(book => {
+        //   booksArray.filter(book => {
+        //     !booksArray.includes(book)
+        //   })
+        // })
+        // const filteredArray = booksArray.filter(book => !this.state.wishlist.includes(book))
+        // const filteredArray = this.state.wishlist.filter(book => !booksArray.includes(book))
+        const filteredArray = booksArray.filter(book => !this.state.wishlist.includes(book.book))
+        // const mappededArray = filteredArray.map(book => booksArray.filter(book => this.state.wishlist.includes(book._id)))
+        // const filteredArray = booksArray.map(book => this.state.wishlist.filter(book => booksArray.includes(book._id)))
+        // const filteredArray = booksArray.map(book => {
+        //   this.state.wishlist.filter(!this.state.wishlist.includes(book))
+        // })
+        console.log('#######', this.state.wishlist)
+        console.log('***********', filteredArray.length)
+        const randomIndex = randomInteger(0, filteredArray.length)
         randomIndex.forEach(
           (indexVal) => {
             newBooks.push(booksArray[indexVal])
@@ -41,26 +68,6 @@ class GetBooks extends Component {
         )
       })
       .catch(console.error)
-    // const randomInteger = (min, max) => {
-    //   const array = []
-    //   for (let i = 0; i < 3; i++) {
-    //     min = Math.ceil(min)
-    //     max = Math.floor(max)
-    //     array.push(Math.floor(Math.random() * (max - min + 1)) + min)
-    //   }
-    //   return array
-    // }
-    // const randomId = randomInteger(1, 346)
-    // // axios call to get a book
-    // randomId.forEach(
-    //   (id) => {
-    //     axios(`${apiUrl}/books/${id}`)
-    //       .then(res => {
-    //         newBooks.push(res.data.book)
-    //         this.setState({ books: newBooks })
-    //       })
-    //       .catch(console.error)
-    //   })
   }
 
   render () {
