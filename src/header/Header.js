@@ -29,7 +29,7 @@ const Header = ({ user }) => (
   <header className="main-header">
     <h1>Reader&apos;s Wishlist</h1>
     <nav>
-      { user && <span>Welcome, {user.email.split('@')[0]}!</span>}
+      { user && <span className="welcome-user">Welcome, {user.email.split('@')[0]}!</span>}
       { user ? authenticatedOptions : unauthenticatedOptions }
       { alwaysOptions }
     </nav>
