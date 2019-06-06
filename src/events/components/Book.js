@@ -11,7 +11,8 @@ class Book extends Component {
     super(props)
 
     this.state = {
-      deleted: false
+      deleted: false,
+      read: false
     }
   }
   addToList = () => {
@@ -30,11 +31,25 @@ class Book extends Component {
   }
   destroy = () => {
     axios({
-      url: `${apiUrl}/wishlists/${this.props.match.params.id}`,
-      method: 'DELETE'
+      url: `${apiUrl}/wishlists/${this.props.wishlistId}`,
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Token token=${this.props.user.token}`
+      }
     })
       .then(() => this.setState({ deleted: true }))
       .catch(console.error)
+  }
+  read = () => {
+    console.log('You have clicked the readButton!')
+    axios({
+      url: `${apiUrl}/wishlists/${this.props.match.params.id}`,
+      method: 'PATCH',
+      headers: {
+        'Authorization': `Token token=${this.props.user.token}`
+      }
+    })
+      .then(() => this.setState({ read: true }))
   }
   render () {
     const { book } = this.props
@@ -42,6 +57,7 @@ class Book extends Component {
     const currentLocation = location.hash
     let addToListButton
     let deleteButton
+    let readButton
 
     if (!book) {
       return <p>Loading...</p>
@@ -55,6 +71,7 @@ class Book extends Component {
 
     if (currentLocation === '#/wishlists') {
       deleteButton = <button onClick={this.destroy}>Remove book</button>
+      readButton = <button onClick={this.read}>Read</button>
     }
     if (currentLocation === '#/books') {
       addToListButton = <button onClick={this.addToList}>Add to list</button>
@@ -68,6 +85,7 @@ class Book extends Component {
         <p>Genre: {book.genre}</p>
         <p>Page count: {book.pageCount}</p>
         <div>{addToListButton}</div>
+        <div>{readButton}</div>
         <div>{deleteButton}</div>
       </div>
     )

@@ -65,8 +65,11 @@ class App extends Component {
           <AuthenticatedRoute user={user} exact path='/books' render={() => (
             <GetBooks user={user}/>
           )} />
-          <AuthenticatedRoute user={user} path='/wishlists' render={() => (
-            <Wishlist user={user}/>
+          <AuthenticatedRoute user={user} path='/wishlists' render={({ match }) => (
+            <Wishlist match={match} user={user}/>
+          )} />
+          <AuthenticatedRoute user={user} path='/wishlists/:id' render={({ match }) => (
+            <Wishlist match={match} user={user}/>
           )} />
         </main>
       </React.Fragment>

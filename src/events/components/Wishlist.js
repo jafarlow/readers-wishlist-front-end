@@ -13,7 +13,6 @@ class Wishlist extends Component {
   }
   componentWillMount () {
     // const wishlistBooks = this.state.books
-    console.log('Successfully mounted')
     axios({
       url: `${apiUrl}/wishlists`,
       method: 'GET',
@@ -32,24 +31,21 @@ class Wishlist extends Component {
               method: 'GET'
             })
               .then(res => {
-                tempArray.push(res.data.book)
+                tempArray.push({ bookData: res.data.book, wishlistId: book._id })
                 this.setState({ books: tempArray })
               })
           }
         )
-        // console.log('######', res.data.wishlists[1].book)
-        // wishlistBooks.push(res.data.books)
-        // this.setState({ books: wishlistBooks })
       })
       .catch(console.error)
   }
   render () {
     const { books } = this.state
-    const { user } = this.props
+    const { user, match } = this.props
     return (
       <div>
         {books.length > 0 && books.map(book => (
-          <Book key={book} user={user} book={book} />
+          <Book key={book.book} match={match} user={user} book={book.bookData} wishlistId={book.wishlistId}/>
         ))}
       </div>
     )
