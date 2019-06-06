@@ -1,12 +1,19 @@
 
 import React, { Component } from 'react'
-// import { Link, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 
 import apiUrl from '../../apiConfig'
 // import Layout from '../shared/Layout'
 
 class Book extends Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      deleted: false
+    }
+  }
   addToList = () => {
     axios({
       url: `${apiUrl}/wishlists`,
@@ -21,12 +28,36 @@ class Book extends Component {
       }
     })
   }
-  // read/not read button on each book
+  destroy = () => {
+    axios({
+      url: `${apiUrl}/wishlists/${this.props.match.params.id}`,
+      method: 'DELETE'
+    })
+      .then(() => this.setState({ deleted: true }))
+      .catch(console.error)
+  }
   render () {
     const { book } = this.props
+    const { deleted } = this.state
+    const currentLocation = location.hash
+    let addToListButton
+    let deleteButton
 
     if (!book) {
       return <p>Loading...</p>
+    }
+
+    if (deleted) {
+      return <Redirect to={
+        { pathname: '/wishlists', state: { msg: 'Book successfully deleted' } }
+      } />
+    }
+
+    if (currentLocation === '#/wishlists') {
+      deleteButton = <button onClick={this.destroy}>Remove book</button>
+    }
+    if (currentLocation === '#/books') {
+      addToListButton = <button onClick={this.addToList}>Add to list</button>
     }
 
     return (
@@ -36,7 +67,8 @@ class Book extends Component {
         <p>Publication year: {book.publicationYear}</p>
         <p>Genre: {book.genre}</p>
         <p>Page count: {book.pageCount}</p>
-        <button onClick={this.addToList}>Add to list</button>
+        <div>{addToListButton}</div>
+        <div>{deleteButton}</div>
       </div>
     )
   }
