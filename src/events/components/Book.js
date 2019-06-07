@@ -12,21 +12,23 @@ class Book extends Component {
 
     this.state = {
       deleted: false,
-      read: false
+      read: ''
     }
   }
-  // componentDidMount () {
-  //   axios({
-  //     url: `${apiUrl}/wishlists/${this.props.wishlistId}`,
-  //     method: 'GET',
-  //     headers: {
-  //       'Authorization': `Token token=${this.props.user.token}`
-  //     }
-  //   })
-  //     // .then(res => console.log(res))
-  //     .then((res) => this.setState({ read: res.data.wishlist.read }))
-  //     .catch(console.error)
-  // }
+  componentDidMount () {
+    if (location.hash === '#/wishlists') {
+      axios({
+        url: `${apiUrl}/wishlists/${this.props.wishlistId}`,
+        method: 'GET',
+        headers: {
+          'Authorization': `Token token=${this.props.user.token}`
+        }
+      })
+      // .then(res => console.log(res))
+        .then((res) => this.setState({ read: res.data.wishlist.read }))
+        .catch(console.error)
+    }
+  }
   addToList = () => {
     axios({
       url: `${apiUrl}/wishlists`,
@@ -64,11 +66,13 @@ class Book extends Component {
       },
       data: {
         wishlist: {
-          book: this.props.book._id
+          read: true
         }
       }
     })
-      .then(() => this.setState({ read: true }))
+      .then(() => <Redirect to={
+        { pathname: '/wishlists' }
+      } />)
       .catch(error => {
         console.error(error)
         this.props.alert(messages.genericError, 'danger')
@@ -83,11 +87,13 @@ class Book extends Component {
       },
       data: {
         wishlist: {
-          book: this.props.book._id
+          read: false
         }
       }
     })
-      .then(() => this.setState({ read: false }))
+      .then(() => <Redirect to={
+        { pathname: '/wishlists' }
+      } />)
       .catch(error => {
         console.error(error)
         this.props.alert(messages.genericError, 'danger')
@@ -107,7 +113,7 @@ class Book extends Component {
 
     if (deleted) {
       return <Redirect to={
-        { pathname: '/wishlists', state: { msg: 'Book successfully deleted' } }
+        { pathname: '/wishlists' }
       } />
     }
 
