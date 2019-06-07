@@ -30,6 +30,7 @@ class Book extends Component {
     }
   }
   addToList = () => {
+    this.btn.setAttribute('disabled', 'disabled')
     axios({
       url: `${apiUrl}/wishlists`,
       method: 'POST',
@@ -70,6 +71,7 @@ class Book extends Component {
         }
       }
     })
+      .then(() => this.setState({ read: true }))
       .then(() => <Redirect to={
         { pathname: '/wishlists' }
       } />)
@@ -91,6 +93,7 @@ class Book extends Component {
         }
       }
     })
+      .then(() => this.setState({ read: false }))
       .then(() => <Redirect to={
         { pathname: '/wishlists' }
       } />)
@@ -126,7 +129,7 @@ class Book extends Component {
       )}</div>
     }
     if (currentLocation === '#/books') {
-      addToListButton = <button onClick={this.addToList}>Add to list</button>
+      addToListButton = <button ref={btn => { this.btn = btn } } onClick={this.addToList}>Add to list</button>
     }
 
     return (
