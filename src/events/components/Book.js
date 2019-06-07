@@ -52,7 +52,6 @@ class Book extends Component {
       .then(() => this.setState({ deleted: true }))
       .catch(error => {
         this.props.alert(messages.deleteBookFailure, 'danger')
-        console.error(error)
       })
   }
   markAsRead = () => {
@@ -71,7 +70,6 @@ class Book extends Component {
       .then(() => this.setState({ read: true }))
       .catch(error => {
         this.props.alert(messages.genericError, 'danger')
-        console.error(error)
       })
   }
   markAsUnread = () => {
@@ -90,7 +88,6 @@ class Book extends Component {
       .then(() => this.setState({ read: false }))
       .catch(error => {
         this.props.alert(messages.genericError, 'danger')
-        console.error(error)
       })
   }
   render () {

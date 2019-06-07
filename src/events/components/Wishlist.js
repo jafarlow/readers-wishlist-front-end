@@ -39,7 +39,6 @@ class Wishlist extends Component {
       })
       .catch(error => {
         this.props.alert(messages.genericError, 'danger')
-        console.error(error)
       })
   }
   render () {
