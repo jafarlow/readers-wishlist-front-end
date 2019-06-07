@@ -13,6 +13,7 @@ class Wishlist extends Component {
     }
   }
   componentWillMount () {
+    const { user } = this.props
     this.props.alert(messages.wishlistLoadSuccess, 'primary')
     axios({
       url: `${apiUrl}/wishlists`,
@@ -22,9 +23,15 @@ class Wishlist extends Component {
       }
     })
       .then(res => {
-        const fullList = res.data.wishlists
+        // const fullList = res.data.wishlists
+        const wishlistArray = []
+        res.data.wishlists.filter(wishlist => {
+          if (user._id === wishlist.owner) {
+            wishlistArray.push(wishlist)
+          }
+        })
         const tempArray = []
-        fullList.forEach(
+        wishlistArray.forEach(
           (book) => {
             axios({
               url: `${apiUrl}/books/${book.book}`,
