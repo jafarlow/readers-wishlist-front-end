@@ -51,6 +51,7 @@ class Book extends Component {
     })
       .then(() => this.setState({ deleted: true }))
       .catch(error => {
+        console.error(error)
         this.props.alert(messages.deleteBookFailure, 'danger')
       })
   }
@@ -69,6 +70,7 @@ class Book extends Component {
     })
       .then(() => this.setState({ read: true }))
       .catch(error => {
+        console.error(error)
         this.props.alert(messages.genericError, 'danger')
       })
   }
@@ -87,6 +89,7 @@ class Book extends Component {
     })
       .then(() => this.setState({ read: false }))
       .catch(error => {
+        console.error(error)
         this.props.alert(messages.genericError, 'danger')
       })
   }

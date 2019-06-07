@@ -54,6 +54,7 @@ class GetBooks extends Component {
         )
       })
       .catch(error => {
+        console.error(error)
         this.props.alert(messages.getBooksFailure, 'danger')
       })
   }
