@@ -6,8 +6,6 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import messages from '../../auth/messages.js'
 
-// import Layout from '../shared/Layout'
-
 class Book extends Component {
   constructor (props) {
     super(props)

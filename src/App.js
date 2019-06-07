@@ -1,7 +1,6 @@
 // EXTERNAL IMPORTS
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
-// import Alert from 'react-bootstrap/Alert'
 
 // LOCAL IMPORTS
 import './App.scss'
@@ -32,10 +31,6 @@ class App extends Component {
   alert = (message, type) => {
     this.setState({ alerts: [...this.state.alerts, { message, type }] })
   }
-
-  // getBooks = () => {
-  //   console.log('You clicked a button!')
-  // }
 
   render () {
     const { alerts, user } = this.state

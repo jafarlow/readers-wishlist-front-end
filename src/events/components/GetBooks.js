@@ -4,7 +4,6 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig.js'
 import Book from './Book.js'
 import messages from '../../auth/messages.js'
-// import { Link } from 'react-router-dom'
 
 class GetBooks extends Component {
   constructor (props) {
