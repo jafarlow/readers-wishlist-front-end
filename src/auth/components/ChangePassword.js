@@ -26,10 +26,10 @@ class ChangePassword extends Component {
     changePassword(this.state, user)
       .then(() => alert(messages.changePasswordSuccess, 'success'))
       .then(() => history.push('/'))
-      .catch(error => {
+      .catch(
         this.setState({ oldPassword: '', newPassword: '' })
         alert(messages.changePasswordFailure, 'danger')
-      })
+      )
   }
 
   render () {
