@@ -48,7 +48,7 @@ class Wishlist extends Component {
     return (
       <div>
         {books.length > 0 && books.map(book => (
-          <Book key={book.book} match={match} user={user} book={book.bookData} wishlistId={book.wishlistId}/>
+          <Book key={book.wishlistId} match={match} user={user} book={book.bookData} wishlistId={book.wishlistId}/>
         ))}
       </div>
     )
