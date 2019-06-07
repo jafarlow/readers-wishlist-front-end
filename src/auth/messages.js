@@ -8,5 +8,10 @@ export default {
   signOutSuccess: 'Come back soon!',
   changePasswordSuccess: 'Password changed successfully!',
   changePasswordFailure: 'Failed to change passwords. Check your old password' +
-                         ' and try again.'
+                         ' and try again.',
+  getBooksFailure: 'Something went wrong with getting the books. Please try again',
+  booksLoadSuccess: 'Click the button below to see three books at random!',
+  deleteBookFailure: 'Something went wrong with removing that book.',
+  genericError: 'Something went wrong. Try again.',
+  wishlistLoadSuccess: 'Here are all the books you\'ve added to your wishlist.'
 }

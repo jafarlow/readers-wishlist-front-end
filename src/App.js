@@ -63,10 +63,10 @@ class App extends Component {
             <ChangePassword alert={this.alert} user={user} />
           )} />
           <AuthenticatedRoute user={user} exact path='/books' render={() => (
-            <GetBooks user={user}/>
+            <GetBooks alert={this.alert} user={user}/>
           )} />
           <AuthenticatedRoute user={user} path='/wishlists' render={({ match }) => (
-            <Wishlist match={match} user={user}/>
+            <Wishlist alert={this.alert} match={match} user={user}/>
           )} />
         </main>
       </React.Fragment>

@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import apiUrl from '../../apiConfig.js'
 import Book from './Book.js'
+import messages from '../../auth/messages.js'
 
 class Wishlist extends Component {
   constructor (props) {
@@ -12,7 +13,7 @@ class Wishlist extends Component {
     }
   }
   componentWillMount () {
-    // const wishlistBooks = this.state.books
+    this.props.alert(messages.wishlistLoadSuccess, 'primary')
     axios({
       url: `${apiUrl}/wishlists`,
       method: 'GET',
@@ -23,7 +24,6 @@ class Wishlist extends Component {
       .then(res => {
         const fullList = res.data.wishlists
         const tempArray = []
-        // console.log(fullList)
         fullList.forEach(
           (book) => {
             axios({
@@ -37,7 +37,10 @@ class Wishlist extends Component {
           }
         )
       })
-      .catch(console.error)
+      .catch(error => {
+        this.props.alert(messages.genericError, 'danger')
+        console.error(error)
+      })
   }
   render () {
     const { books } = this.state

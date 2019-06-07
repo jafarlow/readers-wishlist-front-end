@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import apiUrl from '../../apiConfig.js'
 import Book from './Book.js'
+import messages from '../../auth/messages.js'
 // import { Link } from 'react-router-dom'
 
 class GetBooks extends Component {
@@ -14,6 +15,7 @@ class GetBooks extends Component {
     }
   }
   componentDidMount () {
+    this.props.alert(messages.booksLoadSuccess, 'success')
     axios({
       url: `${apiUrl}/wishlists`,
       method: 'GET',
@@ -52,7 +54,10 @@ class GetBooks extends Component {
           }
         )
       })
-      .catch(console.error)
+      .catch(error => {
+        this.props.alert(messages.getBooksFailure, 'danger')
+        console.error(error)
+      })
   }
 
   render () {

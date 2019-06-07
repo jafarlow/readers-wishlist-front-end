@@ -4,8 +4,16 @@ body {
   padding: 0;
 }
 
-h1 {
+h1, h4, p {
   font-family: 'IM Fell English', serif;
+}
+
+h4 {
+  text-decoration: underline;
+}
+
+p {
+  font-size: 1.2rem;
 }
 
 .alert {

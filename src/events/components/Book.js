@@ -4,6 +4,8 @@ import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 
 import apiUrl from '../../apiConfig'
+import messages from '../../auth/messages.js'
+
 // import Layout from '../shared/Layout'
 
 class Book extends Component {
@@ -50,7 +52,10 @@ class Book extends Component {
       }
     })
       .then(() => this.setState({ deleted: true }))
-      .catch(console.error)
+      .catch(error => {
+        this.props.alert(messages.deleteBookFailure, 'danger')
+        console.error(error)
+      })
   }
   markAsRead = () => {
     axios({
@@ -66,7 +71,10 @@ class Book extends Component {
       }
     })
       .then(() => this.setState({ read: true }))
-      .catch(console.error)
+      .catch(error => {
+        this.props.alert(messages.genericError, 'danger')
+        console.error(error)
+      })
   }
   markAsUnread = () => {
     axios({
@@ -82,7 +90,10 @@ class Book extends Component {
       }
     })
       .then(() => this.setState({ read: false }))
-      .catch(console.error)
+      .catch(error => {
+        this.props.alert(messages.genericError, 'danger')
+        console.error(error)
+      })
   }
   render () {
     const { book } = this.props
