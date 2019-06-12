@@ -6,10 +6,10 @@ $charcoal: #ccc;
 .flash-success,
 .flash-warning,
 .flash-error {
-  border: 1px solid $charcoal;
+  border: 0.0625rem solid $charcoal;
   display: block;
   left: 25%;
-  padding: 30px;
+  padding: 1.875rem;
   position: fixed;
   text-align: center;
   top: 15%;
@@ -34,7 +34,7 @@ $charcoal: #ccc;
   flex-direction: column;
   justify-content: center;
   margin: 15% auto 0;
-  max-width: 600px;
+  max-width: 37.5rem;
 
   h3,
   input {
@@ -43,6 +43,6 @@ $charcoal: #ccc;
 
   button {
     align-self: flex-end;
-    max-width: 200px;
+    max-width: 12.5rem;
   }
 }

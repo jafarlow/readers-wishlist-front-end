@@ -53,7 +53,7 @@ class Wishlist extends Component {
     const { books } = this.state
     const { user, match } = this.props
     return (
-      <div>
+      <div className="book-wrapper">
         {books.length > 0 && books.map(book => (
           <Book key={book.wishlistId} match={match} user={user} book={book.bookData} wishlistId={book.wishlistId}/>
         ))}

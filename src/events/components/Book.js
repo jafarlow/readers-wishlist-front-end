@@ -102,6 +102,7 @@ class Book extends Component {
         this.props.alert(messages.genericError, 'danger')
       })
   }
+
   render () {
     const { book } = this.props
     const { deleted, read } = this.state
@@ -133,15 +134,17 @@ class Book extends Component {
     }
 
     return (
-      <div>
-        <h4>{book.title}</h4>
-        <p>Author: {book.author}</p>
-        <p>Publication year: {book.publicationYear}</p>
-        <p>Genre: {book.genre}</p>
-        <p>Page count: {book.pageCount}</p>
-        <div>{addToListButton}</div>
-        <div>{readButton}</div>
-        <div>{deleteButton}</div>
+      <div className="book">
+        <div className="book-contents">
+          <h4>{book.title}</h4>
+          <p>Author: {book.author}</p>
+          <p>Publication year: {book.publicationYear}</p>
+          <p>Genre: {book.genre}</p>
+          <p>Page count: {book.pageCount}</p>
+          <div>{addToListButton}</div>
+          <div>{readButton}</div><br/>
+          <div>{deleteButton}</div>
+        </div>
       </div>
     )
   }
