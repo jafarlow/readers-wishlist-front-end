@@ -3,6 +3,12 @@ $warning: #f1e681;
 $error: #f08181;
 $charcoal: #ccc;
 
+@media (min-width: 1200px){
+  .container {
+    max-width: 90%;
+  }
+}
+
 .flash-success,
 .flash-warning,
 .flash-error {

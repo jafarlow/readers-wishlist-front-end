@@ -64,10 +64,14 @@ class GetBooks extends Component {
     const { user } = this.props
     return (
       <div>
-        {<button onClick={this.handleOnClick}>Get books!</button>}
-        {books.length > 0 && books.map(book => (
-          <Book key={book._id} user={user} book={book} />
-        ))}
+        <div className="get-button">
+          {<button onClick={this.handleOnClick}>Get books!</button>}
+        </div>
+        <div className="book-wrapper">
+          {books.length > 0 && books.map(book => (
+            <Book key={book._id} user={user} book={book} />
+          ))}
+        </div>
       </div>
     )
   }
