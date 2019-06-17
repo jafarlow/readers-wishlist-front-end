@@ -34,7 +34,10 @@ class GetBooks extends Component {
       for (let i = 0; i < 3; i++) {
         min = Math.ceil(min)
         max = Math.floor(max)
-        array.push(Math.floor(Math.random() * (max - min + 1)) + min)
+        const temp = Math.floor(Math.random() * (max - min + 1)) + min
+        if (!array.includes(temp)) {
+          array.push(temp)
+        }
       }
       return array
     }
