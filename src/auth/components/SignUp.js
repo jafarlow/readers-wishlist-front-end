@@ -43,34 +43,37 @@ class SignUp extends Component {
       <form className='auth-form' onSubmit={this.onSignUp}>
         <h3>Sign Up</h3>
 
-        <label htmlFor="email">Email</label>
+        <label className="sr-only" htmlFor="email">Register with a fake email</label>
         <input
           required
           name="email"
           value={email}
           type="email"
-          placeholder="Email"
+          placeholder="Register with a fake email"
+          className="placeholder-text"
           onChange={this.handleChange}
         />
-        <label htmlFor="password">Password</label>
+        <label className="sr-only" htmlFor="password">Password</label>
         <input
           required
           name="password"
           value={password}
           type="password"
           placeholder="Password"
+          className="placeholder-text"
           onChange={this.handleChange}
         />
-        <label htmlFor="passwordConfirmation">Confirm Password</label>
+        <label className="sr-only" htmlFor="passwordConfirmation">Confirm Password</label>
         <input
           required
           name="passwordConfirmation"
           value={passwordConfirmation}
           type="password"
           placeholder="Confirm Password"
+          className="placeholder-text"
           onChange={this.handleChange}
         />
-        <button type="submit">Sign Up</button>
+        <button type="submit" className="btn btn-success">Sign Up</button>
       </form>
     )
   }

@@ -1,10 +1,25 @@
+html {
+  min-height: 100%;
+}
+
 body {
   font-family: sans-serif;
   margin: 0;
   padding: 0;
+  // /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+  // background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("images/duke-humfrey-library.jpg");
+  //
+  // /* Set a specific height */
+  // min-height: 100%;
+  //
+  // /* Position and center the image to scale nicely on all screens */
+  // background-position: center;
+  // background-repeat: no-repeat;
+  // background-size: cover;
+  // position: relative;
 }
 
-h1, h4, p {
+h1, h3, h4, p, .btn, .placeholder-text {
   font-family: 'IM Fell English', serif;
 }
 
@@ -18,6 +33,12 @@ p {
 
 .alert {
   margin: 1.875rem;
+}
+
+.auth-form {
+  border: solid 0.2rem #343a40;
+  border-radius: 0.5rem;
+  padding: 1rem;
 }
 
 .book {
@@ -52,4 +73,26 @@ p {
 .get-button {
   display: flex;
   justify-content: center;
+  margin-top: 1.5rem;
 }
+
+input {
+  border-radius: 0.5rem;
+}
+
+//NOTE: NEEDS SOME SERIOUS WORK TO ADD A BACKGROUND IMAGE
+// .hero-image {
+//   /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+//   background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("images/duke-humfrey-library.jpg");
+//
+//   /* Set a specific height */
+//   min-height: 100vw;
+//   min-width: 100vw;
+//
+//   /* Position and center the image to scale nicely on all screens */
+//   background-position: center;
+//   background-repeat: no-repeat;
+//   background-size: cover;
+//   position: fixed;
+//   overflow: hidden;
+// }

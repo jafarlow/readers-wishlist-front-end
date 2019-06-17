@@ -65,7 +65,7 @@ class GetBooks extends Component {
     return (
       <div>
         <div className="get-button">
-          {<button onClick={this.handleOnClick}>Get books!</button>}
+          {<button className="btn btn-warning" onClick={this.handleOnClick}>Get books!</button>}
         </div>
         <div className="book-wrapper">
           {books.length > 0 && books.map(book => (

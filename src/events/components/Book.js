@@ -122,15 +122,15 @@ class Book extends Component {
     }
 
     if (currentLocation === '#/wishlists') {
-      deleteButton = <button onClick={this.destroy}>Remove book</button>
+      deleteButton = <button className="btn btn-danger" onClick={this.destroy}>Remove book</button>
       readButton = <div>{read ? (
-        <button onClick={this.markAsUnread}>Mark as Unread</button>
+        <button className="btn btn-warning" onClick={this.markAsUnread}>Mark as Unread</button>
       ) : (
-        <button onClick={this.markAsRead}>Mark as Read</button>
+        <button className="btn btn-success" onClick={this.markAsRead}>Mark as Read</button>
       )}</div>
     }
     if (currentLocation === '#/books') {
-      addToListButton = <button ref={btn => { this.btn = btn } } onClick={this.addToList}>Add to list</button>
+      addToListButton = <button className="btn btn-warning" ref={btn => { this.btn = btn } } onClick={this.addToList}>Add to list</button>
     }
 
     return (
