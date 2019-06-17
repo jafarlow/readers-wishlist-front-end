@@ -6,16 +6,21 @@ $charcoal: #bbb;
 
 .main-header {
   align-items: center;
-  border-bottom: 0.0625rem solid $charcoal;
+  // border-bottom: 0.0625rem solid $charcoal;
   display: flex;
   height: 6.25rem;
   padding: 0 1.25rem;
   font-family: 'IM Fell English', serif;
+  background: linear-gradient(rgba(84, 50, 17, 0.7), rgba(0, 0, 0, 0.5));
   a,
   span {
     font-size: 1.2rem;
     margin: 0 0.9375rem;
   }
+}
+
+.main-header h1, .welcome-user {
+  color: #fff;
 }
 
 .main-header > nav {

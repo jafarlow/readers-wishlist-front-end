@@ -41,6 +41,10 @@ $charcoal: #ccc;
   justify-content: center;
   margin: 15% auto 0;
   max-width: 37.5rem;
+  background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(0, 0, 0, 0.5));
+  border: solid 0.2rem #343a40;
+  border-radius: 0.5rem;
+  padding: 1rem;
 
   h3,
   input {
