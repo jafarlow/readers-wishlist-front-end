@@ -130,7 +130,7 @@ class Book extends Component {
       )}</div>
     }
     if (currentLocation === '#/books') {
-      addToListButton = <button className="btn btn-warning" ref={btn => { this.btn = btn } } onClick={this.addToList}>Add to list</button>
+      addToListButton = <button className="btn btn-success" ref={btn => { this.btn = btn } } onClick={this.addToList}>Add to list</button>
     }
 
     return (
