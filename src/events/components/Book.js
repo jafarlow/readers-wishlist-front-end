@@ -136,8 +136,11 @@ class Book extends Component {
     return (
       <div className="book">
         <div className="book-contents">
-          <h4>{book.title}</h4>
+          <h3>{book.title}</h3>
           <p>Author: {book.author}</p>
+          {book.series &&
+            <p>Series: {book.series}</p>
+          }
           <p>Publication year: {book.publicationYear}</p>
           <p>Genre: {book.genre}</p>
           <p>Page count: {book.pageCount}</p>
